@@ -12,8 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.post('/', async (req, res) => {
-  console.log("In Post Request /users")
+app.post('/expense', async (req, res) => {
   try {
     const docRef = await addDoc(collection(db, req.body.userId), {
       name: req.body.name,
@@ -22,14 +21,13 @@ app.post('/', async (req, res) => {
       shop_name: req.body.shop_name,
       recurring: req.body.recurring,
     });
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
-    console.error("Error adding document: ", e);
+    res.send("Error adding document: ", e);
   }
   res.send("Done")
 })
 
-app.get("/", async (req, res) => {
+app.get("/expense", async (req, res) => {
   let data = []
 
   const q = query(collection(db, req.body.userId))
@@ -38,18 +36,28 @@ app.get("/", async (req, res) => {
   querySnapshot.forEach((doc) => {
     data.push(doc.id, doc.data());
   });
-  console.log(data)
   res.send(data)
-  })
+})
+
+app.get("/dailyTotal", async (req, res) => {
+  let data = []
+  let total = 0
+
+  const q = query(collection(db, req.body.userId))
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    if(doc.data().date == new Date().toDateString()){
+      total += doc.data().amount;
+    }
+  });
+  res.send(total.toString())
+})
 
 app.post("/auth", (req, res) => {
 
   const email = req.body.email
   const password = req.body.password
-
-  console.log(auth)
-  console.log(email)
-  console.log(password)
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -57,10 +65,23 @@ app.post("/auth", (req, res) => {
       updateProfile(user, {
         displayName: req.body.name
       }).then(() => {
-        sendEmailVerification(auth.currentUser)
-        .then(() => {
+        // sendEmailVerification(auth.currentUser)
+        // .then(() => {
           res.send("Done")
-        });
+          signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            let user = userCredential.user;
+            if(user.emailVerified){
+              res.send(user)
+            } else {
+              res.send("Email Not Verified")
+            }
+          })
+          .catch((error) => {
+            const { code, message } = error;
+            res.send(code + "\n" + message)
+          });
+        // });
       })
     })
     .catch((error) => {
@@ -89,6 +110,4 @@ app.get("/auth", (req, res) => {
 
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(port, () => {})
