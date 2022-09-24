@@ -1,5 +1,4 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 import { collection, addDoc, getFirestore } from "firebase/firestore"; 
 import { v4 as uuidv4 } from "uuid"
 import bodyParser from "body-parser"
@@ -17,9 +16,6 @@ const config = {
   appId: "1:783379826189:web:b8f0336adeee6533d0f744",
   measurementId: "G-RRKN85FY07"
 };
-
-const firebaseApp = initializeApp(config);
-const db = getFirestore(firebaseApp);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
