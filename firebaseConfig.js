@@ -8,4 +8,9 @@ const config = {
     measurementId: "G-RRKN85FY07"
 };
 
-export default config
+
+const firebaseApp = initializeApp(config);
+const db = getFirestore(firebaseApp);
+
+
+module.exports = db;
