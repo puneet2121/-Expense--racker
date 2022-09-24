@@ -1,4 +1,4 @@
-export const config = {
+const config = {
     apiKey: "AIzaSyCJ4mG0vJeljtXc7XOPSHw2egBI-Jmy5_U",
     authDomain: "expense-tracker-9f3eb.firebaseapp.com",
     projectId: "expense-tracker-9f3eb",
@@ -7,3 +7,5 @@ export const config = {
     appId: "1:783379826189:web:b8f0336adeee6533d0f744",
     measurementId: "G-RRKN85FY07"
 };
+
+export default config
