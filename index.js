@@ -28,10 +28,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/users', async (req, res) => {
   console.log("In Post Request /users")
   try {
-    const docRef = await addDoc(collection(db, "users", req.body.userId), {
-      first: "Ada",
-      last: "Lovelace",
-      born: 1815
+    const docRef = await addDoc(collection(db, "user" + req.body.userId), {
+      name: req.body.name,
+      date: new Date(),
+      amount: req.body.amount,
+      shop_name: req.body.shop_name,
+      recurring: req.body.recurring,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
