@@ -1,0 +1,181 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "My User Project CRUD",
+      "description": "My User Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/expense": {
+        "post": {
+          "tags": [
+            "Expense"
+          ],
+          "description": "Create new expense in system",
+          "parameters": [
+            {
+              "name": "Expense",
+              "in": "body",
+              "description": "Expense that we want to create",
+              "schema": {
+                "$ref": "#/definitions/CreateExpense"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New expense is created",
+              "schema": {
+                "$ref": "#/definitions/CreateExpense"
+              }
+            }
+          }
+        },
+        "get": {
+            "tags": [
+              "Expense"
+            ],
+            "description": "Get expenses from user",
+            "parameters": [
+              {
+                "name": "Expense",
+                "in": "body",
+                "description": "The expenses",
+                "schema": {
+                  "$ref": "#/definitions/GetExpense"
+                }
+              }
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "Get expenses from user",
+                "schema": {
+                  "$ref": "#/definitions/Expense"
+                }
+              }
+            }
+          }
+      
+      }
+    },
+    "definitions": {
+      "CreateExpense": {
+        "required": [
+          "userId",
+          "name",
+          "amount",
+          "recurring"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "recurring":{
+            "type": "string"
+          }
+        }
+      },
+      "GetExpense": {
+        "required": [
+          "userId"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      },
+      "Expense": {
+        "required": [
+          "userId",
+          "name",
+          "amount",
+          "recurring"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "recurring":{
+            "type": "string"
+          }
+        }
+      },
+      "CreateUser": {
+        "required": [
+            "email",
+            "password",
+            "name"
+          ],
+          "properties": {
+            "email": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "name": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+      },
+      "User": {
+        "required": [
+            "email",
+            "password"
+          ],
+          "properties": {
+            "email": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+      }
+    }
+  }

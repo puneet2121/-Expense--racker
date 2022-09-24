@@ -4,13 +4,22 @@ const uuidv4 = require("uuid").v4
 const Express = require("express")
 const bodyParser = require("body-parser")
 const { db, auth } = require("./firebaseConfig")
+// const swaggerUi = require('swagger-ui-express'),
+// swaggerDocument = require('./swagger.json');
 
 const app = Express()
 const port = 3000
+const cors = require('cors')
 
+app.use(cors({origin: true}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// app.use(
+//   '/api-docs',
+//   swaggerUi.serve, 
+//   swaggerUi.setup(swaggerDocument)
+// );
 
 app.post('/expense', async (req, res) => {
   try {
