@@ -1,4 +1,5 @@
-const { collection, addDoc } = require("firebase/firestore")
+const { initializeApp } = require("firebase/app")
+const { getFirestore } = require("firebase/firestore")
 
 const config = {
     apiKey: "AIzaSyCJ4mG0vJeljtXc7XOPSHw2egBI-Jmy5_U",
@@ -10,9 +11,7 @@ const config = {
     measurementId: "G-RRKN85FY07"
 };
 
-
-const firebaseApp = initializeApp(config);
-const db = getFirestore(firebaseApp);
-
+const app = initializeApp(config);
+const db = getFirestore(app);
 
 module.exports = db;

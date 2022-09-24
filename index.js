@@ -1,8 +1,7 @@
-
-
 const { collection, addDoc } = require("firebase/firestore")
 const uuidv4 = require("uuid").v4
 const Express = require("express")
+const bodyParser = require("body-parser")
 const db = require("./firebaseConfig")
 
 const app = Express()
