@@ -1,9 +1,9 @@
-// Import the functions you need from the SDKs you need
-import { collection, addDoc, getFirestore } from "firebase/firestore"; 
-import { v4 as uuidv4 } from "uuid"
-import bodyParser from "body-parser"
-import Express from "express";
-import db from './firebaseConfig'
+
+
+const { collection, addDoc } = require("firebase/firestore")
+const uuidv4 = require("uuid").v4
+const Express = require("express")
+const db = require("./firebaseConfig")
 
 const app = Express()
 const port = 3000

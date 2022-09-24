@@ -1,3 +1,5 @@
+const { collection, addDoc } = require("firebase/firestore")
+
 const config = {
     apiKey: "AIzaSyCJ4mG0vJeljtXc7XOPSHw2egBI-Jmy5_U",
     authDomain: "expense-tracker-9f3eb.firebaseapp.com",
