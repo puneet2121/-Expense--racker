@@ -1,5 +1,6 @@
 const { initializeApp } = require("firebase/app")
 const { getFirestore } = require("firebase/firestore")
+const { getAuth } = require("firebase/auth")
 
 const config = {
     apiKey: "AIzaSyCJ4mG0vJeljtXc7XOPSHw2egBI-Jmy5_U",
@@ -13,5 +14,7 @@ const config = {
 
 const app = initializeApp(config);
 const db = getFirestore(app);
+const auth = getAuth(app)
 
-module.exports = db;
+exports.db = db
+exports.auth = auth
