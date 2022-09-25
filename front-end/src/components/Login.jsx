@@ -2,13 +2,12 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Home from "./Home";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes,Redirect } from "react-router-dom";
 const Login = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
-    <Route exact path="/">
-      {loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
-    </Route>;
+    
+      
   };
   return (
     <>
