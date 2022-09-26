@@ -23,13 +23,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/expense', async (req, res) => {
   try {
-    const docRef = await addDoc(collection(db, req.body.userId), {
-      name: req.body.name,
+
+    const { userId, name, amount, shop_name, recurring} = req.body;
+
+    const docRef = await addDoc(collection(db, userId), {
+      name,
       date: new Date().toDateString(),
-      amount: req.body.amount,
-      shop_name: req.body.shop_name,
-      recurring: req.body.recurring,
+      amount,
+      shop_name,
+      recurring,
     });
+    
   } catch (e) {
     res.send("Error adding document: ", e);
   }
@@ -46,8 +50,8 @@ app.get("/expense", async (req, res) => {
     data.push(doc.id, doc.data());
   });
   res.send(data)
-})
-
+      })
+      
 app.get("/dailyTotal", async (req, res) => {
   let data = []
   let total = 0
@@ -84,8 +88,8 @@ app.post("/auth", (req, res) => {
               res.send(user)
             } else {
               res.send("Email Not Verified")
-            }
-          })
+  }
+})
           .catch((error) => {
             const { code, message } = error;
             res.send(code + "\n" + message)
@@ -110,7 +114,7 @@ app.get("/auth", (req, res) => {
       } else {
         res.send("Email Not Verified")
       }
-    })
+})
     .catch((error) => {
       const { code, message } = error;
       res.send(code + "\n" + message)
