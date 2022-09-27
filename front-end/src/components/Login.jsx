@@ -1,8 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Home from "./Home";
-import { useNavigate,NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 const Login = () => {
   const navigate = useNavigate();
@@ -37,6 +36,7 @@ const Login = () => {
         alert('invalid details')
       } else { 
         console.log('user login successful')
+        localStorage.setItem("user_login",JSON.stringify(user))
         navigate("/home");
       }
     }

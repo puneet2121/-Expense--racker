@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 const Navlink = () => {
+  const user = localStorage.getItem('userdata')
+  console.log(user)
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
