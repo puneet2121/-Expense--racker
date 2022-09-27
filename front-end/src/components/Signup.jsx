@@ -8,7 +8,7 @@ const Signup = () => {
     Email:'',
     Password:''
   });
-  console.log(inputValue);
+  const [data,setData] = useState([]);
   const getUserData = (e) => {
     const {value,name} = e.target
     setInputValue(() => {
@@ -17,7 +17,14 @@ const Signup = () => {
         [name]:value
       }
     })
-  }
+  };
+  const addData = (e) => {
+    e.preventDefault();
+    console.log(inputValue);
+    const {Name,Email,Password} = inputValue;
+    localStorage.setItem('userdata',JSON.stringify([...data,inputValue]));
+    
+  } 
   return (
     <div className="d-flex justify-content-center">
       <Form className="mt-3 w-50 justify-content-center">
@@ -35,7 +42,7 @@ const Signup = () => {
           <Form.Control type="password" name="Password" onChange={getUserData} placeholder="Password" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={addData}>
           Submit
         </Button>
       </Form>
