@@ -21,7 +21,6 @@ const Signup = () => {
   const addData = (e) => {
     e.preventDefault();
     console.log(inputValue);
-    const {Name,Email,Password} = inputValue;
     localStorage.setItem('userdata',JSON.stringify([...data,inputValue]));
     
   } 
