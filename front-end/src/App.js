@@ -12,7 +12,7 @@ function App() {
     <Navlink />
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login login={isLogin} setIslogin={setIslogin} />}></Route>
+        <Route path="/" element={<Login/>}></Route>
 
         <Route path="/home" element={<Home />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
