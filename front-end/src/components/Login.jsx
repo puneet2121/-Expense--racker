@@ -9,7 +9,7 @@ const Login = () => {
     Name: "",
     Password: "",
   });
-
+console.log(input)
   const getUserData = (e) => {
     
     const { value, name } = e.target;
