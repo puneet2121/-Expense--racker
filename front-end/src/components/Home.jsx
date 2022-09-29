@@ -11,25 +11,35 @@ const Home = () => {
   });
   // Setting up another data for the storage purpose so I can use this to use OnSubmit
   const [data, setData] = useState([{
-    item: "",
+    item: [],
     price: "",
   }]);
+  const [items,setItems] = useState([]);
+  const [prices,setPrices] = useState([]);
   let name, value;
   const getData = (e) => {
     name = e.target.name;
     value = e.target.value;
     setState({ ...state, [name]: value });
   };
-
-
+  console.log(items)
   const handleClick = (e) => {
     e.preventDefault();
-    
-    setData([{ ...state, item: state.item, price: state.price }]); // Using data for onSubmit handler
+    setItems(current => [state.item,...current])
+    setPrices(current => [state.price,...current])
+    console.log(items)
+    setData([{ ...state,
+      item: state.item,
+      items: items,
+      price: state.price,
+      prices: prices }]); // Using data for onSubmit handler
+
   };
+  console.log(data)
   data.map((el,id) => {
     console.log(el,id)
   })
+  
   return (
     <>
       <h1>Please enter your expense for today</h1>
@@ -64,13 +74,17 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-       { data.map((element,id) => {
+       { items.map((element,id) => {
         console.log('DATAR',element)
           return <> 
           <tr>
             <td>{id + 1}</td>
-          <td>{element.item}</td>
-          <td>{element.price}</td>
+          <td>{element}</td>
+          <td>
+            {items.map((el) => {
+              return <>{el}</>
+            })}
+          </td>
           </tr>
           
           </>
