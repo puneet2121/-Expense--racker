@@ -10,35 +10,40 @@ const Home = () => {
     price: "",
   });
   // Setting up another data for the storage purpose so I can use this to use OnSubmit
-  const [data, setData] = useState([{
-    item: [],
-    price: "",
-  }]);
-  const [items,setItems] = useState([]);
-  const [prices,setPrices] = useState([]);
+  const [data, setData] = useState([
+    {
+      item: [],
+      price: "",
+    },
+  ]);
+  const [items, setItems] = useState([]);
+  const [prices, setPrices] = useState([]);
   let name, value;
   const getData = (e) => {
     name = e.target.name;
     value = e.target.value;
     setState({ ...state, [name]: value });
   };
-  console.log(items)
+  console.log(items);
   const handleClick = (e) => {
     e.preventDefault();
-    setItems(current => [state.item,...current])
-    setPrices(current => [state.price,...current])
-    console.log(items)
-    setData([{ ...state,
-      item: state.item,
-      items: items,
-      price: state.price,
-      prices: prices }]); // Using data for onSubmit handler
-
+    setItems((current) => [state.item, ...current]);
+    setPrices((current) => [state.price, ...current]);
+    console.log(items);
+    setData([
+      {
+        ...state,
+        item: state.item,
+        items: items,
+        price: state.price,
+        prices: prices,
+      },
+    ]); // Using data for onSubmit handler
   };
-  console.log(data)
-  data.map((el,id) => {
-    console.log(el,id)
-  })
+
+  data.map((el, id) => {
+    console.log(el, id);
+  });
   
   return (
     <>
@@ -66,32 +71,28 @@ const Home = () => {
       </InputGroup>
 
       <Table striped bordered hover variant="dark">
-        <thead>
+        
           <tr>
             <th>#</th>
             <th>Item</th>
             <th>Price</th>
           </tr>
-        </thead>
-        <tbody>
-       { items.map((element,id) => {
-        console.log('DATAR',element)
-          return <> 
-          <tr>
-            <td>{id + 1}</td>
-          <td>{element}</td>
-          <td>
-            {items.map((el) => {
-              return <>{el}</>
-            })}
-          </td>
-          </tr>
-          
-          </>
-        })
-      }
-      </tbody>
         
+        
+        
+            {prices.map((el,id) => {
+              return<>
+              <tr>
+              <td>{id + 1}</td>
+              <td>{el}</td>
+              <td>{data.item}</td>
+              </tr>
+            </>
+            })}
+               
+              
+          
+       
       </Table>
     </>
   );
