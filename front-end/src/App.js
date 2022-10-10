@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import ExpenseItem from "./components/ExpenseItem";
 function App() {
-  
+  const date = new Date(2022, 9, 27);
 
   return (
     <>
-    <ExpenseItem />
+    <ExpenseItem date={date}/>
   
     {/* <Navlink />
     <BrowserRouter>
