@@ -9,9 +9,10 @@ function App() {
 
   return (
     <Card className="card">
+      <NewExpense />
     <ExpenseItem date={date}/>
     <ExpenseItem date={date2}/>
-    <NewExpense />
+    
     {/* <Navlink />
     <BrowserRouter>
       <Routes>
