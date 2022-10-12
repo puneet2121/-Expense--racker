@@ -13,10 +13,12 @@ function App() {
     },
     { id: 2, title: "groceries", amount: 120, date: new Date(2022, 8, 20) },
   ];
-
+const addExpenseHandler = expense => {
+  console.log(expense)
+}
   return (
     <Card className="card">
-      <NewExpense />
+      <NewExpense onAddExpense ={addExpenseHandler}/>
       <ExpenseItem
         title={expenses[0].title}
         date={expenses[0].date}
