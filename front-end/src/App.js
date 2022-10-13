@@ -31,6 +31,9 @@ function App() {
       return [expense, ...prev];
     });
   };
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.enteredDate.getFullYear().toString() === filteredYear;
+  });
   return (
     <>
       <Card className="card">
@@ -39,14 +42,18 @@ function App() {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-
-        {expenses.map((expense) => (
-          <ExpenseItem
-            title={expense.enteredTitle}
-            amount={expense.enteredAmount}
-            date={expense.enteredDate}
-          />
-        ))}
+        {filteredExpenses.length === 0 ? (
+          <p>No expenses found</p>
+        ) : (
+          filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.enteredTitle}
+              amount={expense.enteredAmount}
+              date={expense.enteredDate}
+            />
+          ))
+        )}
 
         {/* <Navlink />
     <BrowserRouter>
