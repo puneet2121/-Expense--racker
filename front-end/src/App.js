@@ -6,18 +6,6 @@ import NewExpense from "./components/NewExpense";
 import ExpenseFilter from "./components/ExpenseFilter";
 
 const allExpenses = [
-  {
-    id: 1,
-    enteredTitle: "rent",
-    enteredAmount: 450,
-    enteredDate: new Date(2022, 9, 27),
-  },
-  {
-    id: 2,
-    enteredTitle: "groceries",
-    enteredAmount: 120,
-    enteredDate: new Date(2022, 8, 20),
-  },
 ];
 function App() {
   const [filteredYear, setFilteredYear] = useState("2020");
