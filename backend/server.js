@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectToDB from './config.js';
+import router from "./Routes/routes.js";
 dotenv.config();
 const port = process.env.PORT
 // middleware
@@ -15,9 +16,7 @@ app.use(bodyParser.urlencoded({ extended:true }));
 
 connectToDB();
 
-app.get('/',(req,res) => {
-  res.send("hello world");
-}
-)
+app.get('/',router)
 
 app.listen(port,() => console.log(`server is listening on ${port}`));
+
