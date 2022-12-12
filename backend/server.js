@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended:true }));
 
 connectToDB();
 
-app.get('/',router)
+app.use('/',router);
 
 app.listen(port,() => console.log(`server is listening on ${port}`));
 
